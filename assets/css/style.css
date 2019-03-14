@@ -1,0 +1,190 @@
+h1{
+    color: #fc234b;
+    text-align: center;
+}
+body{
+    background-image: url('../img/photo_de_groupe_1.JPG');
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+}
+/* navbar */
+body .navbar.navbar-expand-lg.navbar-light{
+    background-color: rgb(244, 105, 230, 0.5) ;
+    border: 2px solid black;
+}
+.navbar-light .navbar-nav .nav-link{
+    color: black;
+}
+nav ul li a, select{
+    padding: 4px 20px ;
+    background: #f1efee ;
+    color: black ;
+    border: 1px solid #600 ;
+    line-height: 1em ;
+    text-align: center ;
+    text-decoration: none ;
+    border-radius: 6px;
+}
+.nav-item{
+    margin: 25px;
+}
+nav ul li{
+    margin: 2px;
+    list-style-type: none;
+}
+nav ul{
+    margin: auto;
+}
+h1, nav{
+    font-family: 'Spicy Rice', cursive;
+}
+body{
+    font-family: 'Unna', serif;
+}
+h2{
+    font-weight: bold;
+    text-align: center;
+    color : #fc234b;
+}
+/* card */
+.card-body{
+    margin-top: 10px;
+    margin-left: 10px;
+    background-color: rgb(255,255,255, 0.7);
+    border: 2px solid black;
+    max-width: 38rem;
+    border-radius: 10px;
+}
+.card-title, .card-text{
+    color: black;
+}
+.member{
+    color: black;
+}
+#mail, #facebook, #phoneContact1, #phoneContact2{
+    color: black;
+}
+#location{
+    margin-bottom: 30px;
+}
+#img .img-fluid{
+    height: 25rem;
+    margin-left: 50px;
+    margin-top: 20px;
+    -moz-box-shadow: 10px 10px 10px 0px #cfcfcf;
+    -webkit-box-shadow: 10px 10px 10px 0px #cfcfcf;
+    -o-box-shadow: 10px 10px 10px 0px #cfcfcf;
+    box-shadow: 10px 10px 10px 0px #cfcfcf;
+    filter:progid:DXImageTransform.Microsoft.Shadow(color=#cfcfcf, Direction=134, Strength=10);
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+#img1{
+    max-height: 100px;
+}
+/* pied de page */
+.PageUp{
+    background: white;
+    display: inline-block;
+    width: 100%;
+    position: relative;
+    bottom: 0;
+    position: fixed;
+    text-align: center;
+}
+/* formulaire */
+legend{
+    text-align: center;
+}
+#informationChild, #informationParents, #emergency, #imageRights, #payment, #registration, #photo, .connexion{
+    border: 3px solid #f469e6;
+    border-radius: 10px;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    text-align: center;
+    color: black;
+    background-color: rgb(255,255,255, 0.7);
+}
+.submit{
+    margin-bottom: 50px;
+    margin-top: 30px;
+}
+.form-control{
+    border: 2px solid black;
+}
+small{
+    color: red;
+}
+
+/* règlement intérieur */
+#rules{
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 10px;
+    background-color: rgb(255,255,255, 0.7);
+    border: 2px solid black;
+    max-width: 60rem;
+    border-radius: 10px;
+}
+li{
+    margin-bottom: 10px;
+    color: black;
+}
+
+/* galerie photo*/
+
+h3{
+    margin-top: 3%;
+}
+.show_10_juin_2018 .img-fluid, .show_21_mai_2018 .img-fluid, .christmas2017 .img-fluid, .showVideo_10_juin_2018, .repasHDC .img-fluid, .tatooSaloon .img-fluid{
+    height: 12rem;
+    max-width: 20rem;
+    margin-left: 50px;
+    margin-top: 20px;
+    border-radius: 10px;
+    border: 2px solid black;
+}
+.show_10_juin_2018_img, .show_21_mai_2018_img, .repasHDC_img, .tatooSaloon_img, .christmas2017_img{
+    padding-bottom: 50px;
+    border: 3px solid #f469e6;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    text-align: center;
+    color: black;
+    background-color: rgb(255,255,255, 0.7);
+}
+.showVideo_21_mai_2018, .repasHDCVideo, .tatooSaloonVideo{
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+/*news*/
+.news{
+    border: 3px solid #f469e6;
+    border-radius: 10px;
+    width: 65%;
+    margin-left: 20px;
+    margin-top: 20px;
+    text-align: center;
+    color: black;
+    background-color: rgb(255,255,255, 0.7);
+}
+h4{
+    font-size: 2rem;
+}
+.connexion .card-body{
+    margin-top: 10px;
+    margin-left: 10px;
+    background-color: rgb(255,255,255, 0.7);
+    border: 2px solid black;
+    max-width: 40rem;
+    border-radius: 10px;
+}
