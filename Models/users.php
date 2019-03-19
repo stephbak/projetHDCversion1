@@ -89,15 +89,29 @@ class users {
      */
     public function updateUser() {
         $caracSuppr = array('-', ' ', '.');
-        $query = 'INSERT INTO `ab0yz_users` ( `id`, `lastname`, `firstname`, `phone`, `mail`, `password`) VALUES (:id, UPPER(:lastname), :firstname, :phone, :mail, :password)';
+        $query = 'UPDATE `ab0yz_users` SET `lastname` = (UPPER(:lastname)), `firstname` = :firstname, `phone` = :phone, `mail` = :mail WHERE `id` = :id';
         $queryResult = $this->db->prepare($query); //On prépare la requête avec des valeurs inconnues
         $queryResult->bindValue(':id', $this->id, PDO::PARAM_INT);
         $queryResult->bindValue(':lastname', $this->lastname, PDO::PARAM_STR); //On insére des données au moment de la validation du formulaire
         $queryResult->bindValue(':firstname', ucfirst(strtolower($this->firstname)), PDO::PARAM_STR); //transforme la chaine en minuscule et la premiére lettre en majuscule
         $queryResult->bindValue(':phone', str_replace($caracSuppr, '', $this->phone), PDO::PARAM_STR); //remplace les . - par une chaine vide
         $queryResult->bindValue(':mail', $this->mail, PDO::PARAM_STR);
-        $queryResult->bindValue(':password', $this->password, PDO::PARAM_STR);
         return $queryResult->execute(); //on éxécute la méthode
+    }
+
+    public function updatePassword() {
+        $query = 'UPDATE `ab0yz_users` SET `password`= :password WHERE `id` = :id';
+        $queryResult = $this->db->prepare($query); //On prépare la requête avec des valeurs inconnues
+        $queryResult->bindValue(':password', $this->password, PDO::PARAM_STR); //On insére des données au moment de la validation du formulaire
+        $queryResult->bindValue(':id', $this->id, PDO::PARAM_INT);
+        return $queryResult->execute(); //on éxécute la méthode
+    }
+
+    public function deleteUser() {
+        $query = 'DELETE FROM `ab0yz_users` WHERE `id` = :id';
+        $queryResult = $this->db->prepare($query);
+        $queryResult->bindValue(':id', $this->id, PDO::PARAM_INT);
+        return $queryResult->execute();
     }
 
 }

@@ -1,8 +1,4 @@
-<?php
-//include 'Controllers/logOutCtrl.php';
-//include 'Models/dataBase.php';
-//include 'Models/users.php';
-?>
+
 <!DOCTYPE html>
 <html lang="fr" dir="ltr">
     <head>

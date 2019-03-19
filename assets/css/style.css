@@ -96,6 +96,9 @@ h2{
     text-align: center;
 }
 /* formulaire */
+.error{
+    color: red;
+}
 legend{
     text-align: center;
 }
@@ -103,6 +106,7 @@ legend{
     border: 3px solid #f469e6;
     border-radius: 10px;
     width: 70%;
+    padding-bottom: 15px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 20px;
@@ -187,4 +191,15 @@ h4{
     border: 2px solid black;
     max-width: 40rem;
     border-radius: 10px;
+}
+.button{
+    padding: 6px 20px ;
+    background: white ;
+    color: black ;
+    border: 2px solid black ;
+    line-height: 1em ;
+    text-align: center ;
+    text-decoration: none ;
+    border-radius: 6px;
+    margin: 5px;
 }

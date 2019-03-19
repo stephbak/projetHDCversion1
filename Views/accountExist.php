@@ -32,11 +32,11 @@ include '../header.php';
                             <input name="password" type="password" class="form-control" placeholder="Mot de passe *" value="<?= isset($password) ? $password : '' ?>">
                         </div>
                     </div>
-                    <p><?= empty($formError['login']) ? '' : $formError['login']; ?></p>
+                    <p class="error"><?= empty($formError['login']) ? '' : $formError['login']; ?></p>
                 </div>
             </fieldset>  
             <div  class="submit row col-lg-12 justify-content-center">
-                <input  type="submit" value="Envoyer" name="login" />
+                <input class="button btn" type="submit" value="Envoyer" name="login" />
             </div>
         </form>
     </div>

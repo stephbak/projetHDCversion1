@@ -14,9 +14,9 @@ if (isset($_POST['login'])) {
         $formError['login'] = 'Votre login ou votre mot de passe n\'est pas valide.';
     }
     if (!empty($_POST['password'])) {
-        if ($_POST['password']) {
+        
             $password = $_POST['password'];
-        }
+        
     } else {
         $formError['login'] = 'Votre login ou votre mot de passe n\'est pas valide.';
     }
@@ -33,12 +33,12 @@ if (isset($_POST['login'])) {
                 $_SESSION['mail'] = $users->mail;
                 $_SESSION['rules'] = $users->interieurRules;
                 $_SESSION['CGU'] = $users->cguChecked;
-                $_SESSION['password'] = $users->password; //on hash le mot de passe
+                $_SESSION['password'] = $users->password; 
                 $_SESSION['isConnect'] = true;
-//                header('Location:../index.php');
-            }
+            
         }else{
             $formError['login'] = 'Votre login ou votre mot de passe n\'est pas valide.';
+        }
         }
     }
     }
