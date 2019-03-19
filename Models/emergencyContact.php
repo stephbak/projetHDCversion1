@@ -12,7 +12,9 @@ class ab0yz_emergencyContact {
         $database = dataBase::getInstance();
         $this->db = $database->db;
     }
-
+/*
+ * 
+ */
     public function createEmergencyContact() {
         $query = 'INSERT INTO `ab0yz_emergencyContact`(`id`, `lastname`, `firstname`, `phone`, `id_ab0yz_childs`) VALUES(:id, UPPER(:lastname), :firstname, :phone, :id_ab0yz_childs)';
         $queryResult = $this->db->prepare($query);

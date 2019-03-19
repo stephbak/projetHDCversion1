@@ -19,5 +19,9 @@ class userStatus {
         $queryResult->bindValue(':id_ab0yz_status', $this->id_ab0yz_status, PDO::PARAM_INT);
         return $queryResult->execute();
     }
-
+    public function userStatusList() {
+        $query = 'SELECT `id_ab0yz_users`, `id_ab0yz_status` FROM `userStatus`';
+        $queryResult = $this->db->query($query);
+        return $queryResult->fetchAll(PDO::FETCH_OBJ);
+    }
 }

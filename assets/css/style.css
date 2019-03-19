@@ -10,6 +10,10 @@ body{
     background-position: center;
 }
 /* navbar */
+body .admin.navbar.navbar-expand-lg.navbar-light{
+    background-color: rgb(79, 151, 232, 0.5) ;
+    border: 2px solid black;
+}
 body .navbar.navbar-expand-lg.navbar-light{
     background-color: rgb(244, 105, 230, 0.5) ;
     border: 2px solid black;

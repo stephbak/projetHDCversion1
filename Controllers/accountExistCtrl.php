@@ -14,17 +14,17 @@ if (isset($_POST['login'])) {
         $formError['login'] = 'Votre login ou votre mot de passe n\'est pas valide.';
     }
     if (!empty($_POST['password'])) {
-        
-            $password = $_POST['password'];
-        
+
+        $password = $_POST['password'];
     } else {
         $formError['login'] = 'Votre login ou votre mot de passe n\'est pas valide.';
     }
     if (count($formError) == 0) {
         $users = new users();
         $users->mail = $login;
-        
-        if ($users->userConnection()) {
+        $users = $users->userConnection();
+        if (is_object($users)) {
+            
             if (password_verify($password, $users->password)) {
                 $_SESSION['id'] = $users->id;
                 $_SESSION['lastname'] = $users->lastname;
@@ -33,14 +33,15 @@ if (isset($_POST['login'])) {
                 $_SESSION['mail'] = $users->mail;
                 $_SESSION['rules'] = $users->interieurRules;
                 $_SESSION['CGU'] = $users->cguChecked;
-                $_SESSION['password'] = $users->password; 
+                $_SESSION['password'] = $users->password;
+                $_SESSION['id_ab0yz_status'] = $users->id_ab0yz_status;
                 $_SESSION['isConnect'] = true;
-            
-        }else{
-            $formError['login'] = 'Votre login ou votre mot de passe n\'est pas valide.';
-        }
+               
+            } else {
+                $formError['login'] = 'Votre login ou votre mot de passe n\'est pas valide.';
+            }
         }
     }
-    }
-    ?>
+}
+?>
  

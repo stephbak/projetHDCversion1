@@ -5,8 +5,10 @@ $regexPhone = '/^0[1-9]([-. ]?[0-9]{2}){4}$/';
 $regexBirthDate = '/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/';
 $formError = array();
 $success = false;
+//je lis la table genre
 $genre = new ab0yz_genre();
 $genreList = $genre->genreList();
+//je lis la table paiementTypes
 $paiementTypes = new ab0yz_paiementTypes();
 $paiementTypesList = $paiementTypes->paiementTypesList();
 
@@ -88,19 +90,20 @@ if (isset($_POST['submit'])) {
     } else {
         $formError['paymentType'] = 'Veuillez indiquer votre choix';
     }
-//    var_dump($paymentType);
+    //si il n'y a pas d'erreur
     if (count($formError) == 0) {
-//        
+        //j'instancie la class inscriptionYear
         $inscriptionsYear = new ab0yz_inscriptionsYear();
-
-        $inscriptionsYear->years = 2018;
-        $inscriptionsYear->medicalCertificate = NULL;
+        //on défini la date de l'année d'inscription
+        $inscriptionsYear->years = date('Y');
+        $inscriptionsYear->medicalCertificate = NULL; //on initialise à NULL car le certificat n'est pas toujours fourni immédiatement
         $inscriptionsYear->numberPayment = $paymentNumber;
         $inscriptionsYear->id_ab0yz_paiementTypes = $paymentType;
-
+        //j'instancie la class childs
         $childs = new ab0yz_childs();
+        //je définie l'âge de l'enfant en fonction de sa date de naissance
         $age = (time() - strtotime($birthDate)) / 3600 / 24 / 365;
-
+        //je lui attribue un groupe en fonction de son âge
         if ($age >= 3 && $age <= 6) {
             $childs->id_ab0yz_groups = 1;
         } elseif ($age > 6 && $age <= 10) {
@@ -112,29 +115,34 @@ if (isset($_POST['submit'])) {
         $database = dataBase::getInstance();
         $database->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         try {
+            //je commence la transaction
             $database->db->beginTransaction();
+            //si la méthode inscriptionYear se fait bien
             if ($inscriptionsYear->inscriptionYear()) {
-//            if ($childs->createChild()) {
+                //la variable success passe à true
                 $success = true;
-
                 $childs->firstname = $firstname;
                 $childs->lastname = $lastname;
                 $childs->birthDate = $birthDate;
                 $childs->imageLaw = $imageLaw;
                 $childs->id_ab0yz_users = $_SESSION['id'];
                 $childs->id_ab0yz_genre = $genre;
+                //on récupère le dernier ID créer
                 $childs->id_ab0yz_inscriptionsYear = $database->db->lastInsertId();
+                //on éxecute la méthode createChild
                 $childs->createChild();
+                //ensuite on instancie la méthode emergencyContact
                 $emergencyContact = new ab0yz_emergencyContact();
                 $emergencyContact->firstname = $_POST['emergencyFirstname'];
                 $emergencyContact->lastname = $_POST['emergencyLastname'];
                 $emergencyContact->phone = $_POST['emergencyPhone'];
                 $emergencyContact->id_ab0yz_childs = $database->db->lastInsertId();
+                //on éxecute la méthode createEmergencyContact
                 $emergencyContact->createEmergencyContact();
             }
             $database->db->commit(); //si il n'y a pas d'erreur on push
         } catch (Exception $e) {
-            $database->db->rollBack(); //sinon on revient au début sans rien rentrer dans les bases users et userStatus
+            $database->db->rollBack(); //sinon on revient au début sans rien rentrer dans les bases inscriptionYear, childs et emergencyContact
             die('Erreur : ' . $formError['existMail'] = 'Un problème est survenu, veuillez rééssayer ultérieurement.');
         }
     }

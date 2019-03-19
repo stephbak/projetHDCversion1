@@ -9,13 +9,16 @@ include '../Models/inscriptionsYear.php';
 include '../header.php';
 include '../Controllers/formulaireCtrl.php';
 ?>
-<form>
-    <div class="connexion">
-        <h3>Pour accéder au formulaire vous devez être connecté à votre compte</h3>
-        <h3><a href="newAccount.php">Créer un compte</a></h3>
-        <h3><a href='accountExist.php'>Me connecter</a></h3>
+
+
+<?php 
+if($success == true){ ?>
+        <div class="connexion">
+        <h2>Votre demande a bien été prise en compte</h2>
+        <p>Vous allez bientôt recevoir un mail de confirmation de l'inscription de votre enfant.</p>
     </div>
-</form>
+<?php }else{ 
+if (isset($_SESSION['isConnect'])) { ?>
 <div id="registration">
     <h2>Inscrire mon enfant</h2>
 </div>
@@ -123,6 +126,14 @@ include '../Controllers/formulaireCtrl.php';
         <input class="button btn" type="submit" value="Valider l'inscription" name="submit" />
     </div>
 </form>
-<?php
+<?php } else { ?>
+<form>
+    <div class="connexion">
+        <h3>Pour accéder au formulaire vous devez être connecté à votre compte</h3>
+        <h3><a href="newAccount.php">Créer un compte</a></h3>
+        <h3><a href='accountExist.php'>Me connecter</a></h3>
+    </div>
+</form>
+<?php } }
 include '../footer.php';
 ?>

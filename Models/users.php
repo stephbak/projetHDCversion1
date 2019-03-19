@@ -21,7 +21,7 @@ class users {
 
     /**
      * 
-     * @return type
+     * @return array
      */
 //    création du user à la création de son compte
     public function createUser() {// : lastname = marqueur nominatif
@@ -41,7 +41,7 @@ class users {
 
     /**
      * 
-     * @return type
+     * @return array
      */
 //    on vérifie dans la colonne mail de la table users si le mail n'existe pas encore avant de le rentrer en base de donnée'
     public function checkIfMailExist() {
@@ -57,35 +57,35 @@ class users {
 
     /**
      * 
-     * @return type
+     * @return array
      */
     public function userConnection() {
         $state = false;
-        $query = 'SELECT `id`, `lastname`, `firstname`, `phone`, `mail`, `password`, `creationDate`, `interieurRules`, `cguChecked` FROM `ab0yz_users` WHERE `mail` = :mail';
+        $query = 'SELECT `ab0yz_users`.`id`, `lastname`, `firstname`, `phone`, `mail`, `password`, `creationDate`, `interieurRules`, `cguChecked`, `ab0yz_userStatus`.`id_ab0yz_status` FROM `ab0yz_users` INNER JOIN `ab0yz_userStatus` ON `ab0yz_userStatus`.`id_ab0yz_users` = `ab0yz_users`.`id` WHERE `mail` = :mail';
         $queryResult = $this->db->prepare($query);
         $queryResult->bindValue(':mail', $this->mail, PDO::PARAM_STR);
         if ($queryResult->execute()) {
             $result = $queryResult->fetch(PDO::FETCH_OBJ);
-            if (is_object($result)) {
-                $this->id = $result->id;
-                $this->lastname = $result->lastname;
-                $this->firstname = $result->firstname;
-                $this->phone = $result->phone;
-                $this->mail = $result->mail;
-                $this->password = $result->password;
-                $this->creationDate = $result->creationDate;
-                $this->interieurRules = $result->interieurRules;
-                $this->cguChecked = $result->cguChecked;
-                $state = true;
-            }
+//            if (is_object($result)) {
+//                $this->id = $result->id;
+//                $this->lastname = $result->lastname;
+//                $this->firstname = $result->firstname;
+//                $this->phone = $result->phone;
+//                $this->mail = $result->mail;
+//                $this->password = $result->password;
+//                $this->creationDate = $result->creationDate;
+//                $this->interieurRules = $result->interieurRules;
+//                $this->cguChecked = $result->cguChecked;
+//                $state = true;
+//            }
         }
 
-        return $state;
+        return $result;
     }
 
     /**
      * 
-     * @return type
+     * @return array
      */
     public function updateUser() {
         $caracSuppr = array('-', ' ', '.');
