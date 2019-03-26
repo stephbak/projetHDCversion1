@@ -76,7 +76,7 @@ if (isset($_POST['submit'])) {
     }
 
     if (!empty($_POST['imageLaw'])) {
-        $imageLaw = $_POST['imageLaw'];
+        $imageLaw = intval($_POST['imageLaw']);
     } else {
         $formError['imageLaw'] = 'Veuillez indiquer votre choix';
     }

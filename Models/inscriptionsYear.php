@@ -5,7 +5,6 @@ class ab0yz_inscriptionsYear {
     public $years = '2018';
     public $medicalCertificate = '';
     public $numberPayment = 0;
-    
     public $id_ab0yz_paiementTypes = 0;
     private $db;
 
@@ -17,13 +16,10 @@ class ab0yz_inscriptionsYear {
     public function inscriptionYear() {
         $query = 'INSERT INTO `ab0yz_inscriptionsYear`(`years`, `medicalCertificate`, `numberPayment`, `id_ab0yz_paiementTypes`) VALUES (:years, :medicalCertificate, :numberPayment, :id_ab0yz_paiementTypes)';
         $queryResult = $this->db->prepare($query);
-       
         $queryResult->bindValue(':years', $this->years, PDO::PARAM_STR);
         $queryResult->bindValue(':medicalCertificate', $this->medicalCertificate, PDO::PARAM_STR);
         $queryResult->bindValue(':numberPayment', $this->numberPayment, PDO::PARAM_INT);
-        
         $queryResult->bindValue(':id_ab0yz_paiementTypes', $this->id_ab0yz_paiementTypes, PDO::PARAM_INT);
-        
         return $queryResult->execute();
     }
 

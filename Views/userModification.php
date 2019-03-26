@@ -7,7 +7,7 @@ include '../Controllers/infoUserCtrl.php';
 ?>
 <?php 
 
-if(isset($_POST['validate'])){
+if($success == true){
 ?>
    <div class="connexion">
         <h2>Vos infos personnelles</h2>
@@ -22,7 +22,7 @@ if(isset($_POST['validate'])){
         <h2>Vos infos personnelles</h2>
     </div>
     <div class="connexion">
-        <form method="POST">
+        <form method="POST" action="userModification.php">
             <fieldset>
                 <legend>Modifier vos informations personnelles</legend>
                 <div class="row col-lg-12 justify-content-center">

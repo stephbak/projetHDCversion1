@@ -1,7 +1,6 @@
 <?php
 
 class dataBase {
-
     public $db;
     private static $_instance;
 
@@ -13,7 +12,6 @@ class dataBase {
             die('Erreur : ' . $e->getMessage());
         }
     }
-
     /**
      * onrécupère l'instance de la classe
      * @return database
@@ -29,7 +27,6 @@ class dataBase {
     public function __destruct() {
         $db = NULL;
     }
-
 }
 ?>
 

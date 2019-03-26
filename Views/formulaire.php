@@ -96,8 +96,8 @@ if (isset($_SESSION['isConnect'])) { ?>
     <div id='imageRights'>
         <fieldset>
             <legend>Droit à l'image </legend>
-            <input type="radio" name="imageLaw" value="authorisation" /><label>J'autorise</label>
-            <input type="radio" name="imageLaw" value="unauthorisation" /><label>n'autorise pas la diffusion de l'image de mon enfant *</label>
+            <input type="radio" name="imageLaw" value="1" /><label>J'autorise</label>
+            <input type="radio" name="imageLaw" value="2" /><label>n'autorise pas la diffusion de l'image de mon enfant *</label>
             <p class="error"><?= empty($formError['imageLaw']) ? '' : $formError['imageLaw']; ?></p>
         </fieldset>
     </div>

@@ -1,6 +1,6 @@
 <?php
 
-//on stock dans la class patients, l'instanciation de l'objet client qui fait référence à notre class client
+//on stock dans la class users, l'instanciation de l'objet users qui fait référence à notre class users
 $users = new users();
 
 if (isset($_GET['idDelete'])) {

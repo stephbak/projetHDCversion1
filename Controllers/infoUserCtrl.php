@@ -1,4 +1,5 @@
 <?php
+
 $users = new users();
 $password = '';
 $newPassword = '';
@@ -49,29 +50,32 @@ if (isset($_POST['validate'])) { //si j'ai appuyé sur le bouton
         $formError['phoneNumber'] = 'Veuillez entrer votre numéro de téléphone.';
     }
 
+
+
     //je compte le nb de ligne existante dans le tableau d'erreur, si = 0 : il n'y a pas d'erreur
     if (count($formError) == 0) {
-        
+
         $users->lastname = $lastname;
         $users->firstname = $firstname;
         $users->phone = $phoneNumber;
         $users->mail = $mail;
         $users->id = $_SESSION['id'];
-        
+
         if ($users->updateUser()) {
             $userConnection = $users->userConnection();
             $_SESSION['lastname'] = $users->lastname;
             $_SESSION['firstname'] = $users->firstname;
             $_SESSION['phoneNumber'] = $users->phone;
             $_SESSION['mail'] = $users->mail;
+
+            $success = true;
         }
     }
 }
 if (isset($_POST['newPassword'])) {
     if (!empty($_POST['password'])) {
-        
-            $password = $_POST['password'];
-        
+
+        $password = $_POST['password'];
     } else {
         $formError['password'] = 'Veuillez entrer un mot de passe.';
     }
@@ -85,7 +89,7 @@ if (isset($_POST['newPassword'])) {
         $formError['confirmPassword'] = 'Veuillez confirmer votre mot de passe.';
     }
     if (count($formError) == 0) {
-       
+
         $users->password = password_hash($password, PASSWORD_BCRYPT);
         $users->id = $_SESSION['id'];
         $updatePassword = $users->updatePassword();

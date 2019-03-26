@@ -89,16 +89,6 @@ h2{
 #img1{
     max-height: 100px;
 }
-/* pied de page */
-.PageUp{
-    background: white;
-    display: inline-block;
-    width: 100%;
-    position: relative;
-    bottom: 0;
-    position: fixed;
-    text-align: center;
-}
 /* formulaire */
 .error{
     color: red;

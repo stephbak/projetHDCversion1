@@ -1,14 +1,11 @@
 <?php
-
+//on instancie la class users
 $users = new users();
-
 $regexText = '/^[a-zéèàêâùïüëA-Z- \']+$/';
 $regexMail = '/^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/';
 $regexPhone = '/^0[1-9]([-. ]?[0-9]{2}){4}$/';
 $formError = array();
 $success = false;
-
-
 if (isset($_POST['submit'])) { //si j'ai appuyé sur le bouton
     if (!empty($_POST['firstname'])) {//je vérifie que firstname n'est pas vide
         if (preg_match($regexText, $_POST['firstname'])) {//s'il n'est pas vide je vérifie que ce qu'a rentrer l'utilisateur corresponde a la regex
@@ -98,11 +95,17 @@ if (isset($_POST['submit'])) { //si j'ai appuyé sur le bouton
             try {
                 //on commence la transaction
                 $database->db->beginTransaction();
+                //si la méthode createUser s'exécute
                 if ($users->createUser()) {
+                    //la variable success passe à true
                     $success = true;
+                    //on instancie la class userStatus
                     $userStatus = new userStatus();
+                    //on attribut au nouveau user le status 5 qui correspond au statut "uUtilisateur"
                     $userStatus->id_ab0yz_status = 5;
+                    //on récupère le dernier ID insérer dans la table "users"
                     $userStatus->id_ab0yz_users = $database->db->lastInsertId();
+                    //on exécute la méthode insertUserStatus pour remplir la table userStatus qui est une table intermédiaire
                     $userStatus->insertUserStatus();
                 }
                 $database->db->commit(); //si il n'y a pas d'erreur on push

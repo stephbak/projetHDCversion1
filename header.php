@@ -45,7 +45,7 @@
                         <a class="nav-link" href="/Views/reglement.php">Règlement intérieur</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/Views/reglement.php">Liste des enfants</a>
+                        <a class="nav-link" href="/Views/childList.php">Liste des enfants</a>
                     </li>
                     <?php if (isset($_SESSION['isConnect'])) { ?>
                         <li class="nav-item">

@@ -20,10 +20,9 @@ class users {
     }
 
     /**
-     * 
+     * Méthode qui sert à insérer les données du user lors de son inscription
      * @return array
      */
-//    création du user à la création de son compte
     public function createUser() {// : lastname = marqueur nominatif
         $caracSuppr = array('-', ' ', '.');
         $query = 'INSERT INTO `ab0yz_users` ( `id`, `lastname`, `firstname`, `phone`, `mail`, `password`, `creationDate`, `interieurRules`, `cguChecked`) VALUES (:id, UPPER(:lastname), :firstname, :phone, :mail, :password, DATE(NOW()), :interieurRules, :cguChecked)';
@@ -40,10 +39,9 @@ class users {
     }
 
     /**
-     * 
+     * Vérification dans la table user si le mail est déjà existant au moment de l'inscription
      * @return array
      */
-//    on vérifie dans la colonne mail de la table users si le mail n'existe pas encore avant de le rentrer en base de donnée'
     public function checkIfMailExist() {
         $result = false;
         $query = 'SELECT COUNT(mail) AS `existMail` FROM `ab0yz_users` WHERE `mail` = :mail';
@@ -56,7 +54,7 @@ class users {
     }
 
     /**
-     * 
+     * Méthode permettant au user de pouvoir lire ses données
      * @return array
      */
     public function userConnection() {
@@ -66,30 +64,18 @@ class users {
         $queryResult->bindValue(':mail', $this->mail, PDO::PARAM_STR);
         if ($queryResult->execute()) {
             $result = $queryResult->fetch(PDO::FETCH_OBJ);
-//            if (is_object($result)) {
-//                $this->id = $result->id;
-//                $this->lastname = $result->lastname;
-//                $this->firstname = $result->firstname;
-//                $this->phone = $result->phone;
-//                $this->mail = $result->mail;
-//                $this->password = $result->password;
-//                $this->creationDate = $result->creationDate;
-//                $this->interieurRules = $result->interieurRules;
-//                $this->cguChecked = $result->cguChecked;
-//                $state = true;
-//            }
         }
 
         return $result;
     }
 
     /**
-     * 
+     * Méthode permettant au user de modifier ses données
      * @return array
      */
     public function updateUser() {
         $caracSuppr = array('-', ' ', '.');
-        $query = 'UPDATE `ab0yz_users` SET `lastname` = (UPPER(:lastname)), `firstname` = :firstname, `phone` = :phone, `mail` = :mail WHERE `id` = :id';
+        $query = 'UPDATE `ab0yz_users` SET `lastname`= (UPPER(:lastname)), `firstname`= :firstname, `phone`= :phone, `mail`= :mail WHERE `id`= :id';
         $queryResult = $this->db->prepare($query); //On prépare la requête avec des valeurs inconnues
         $queryResult->bindValue(':id', $this->id, PDO::PARAM_INT);
         $queryResult->bindValue(':lastname', $this->lastname, PDO::PARAM_STR); //On insére des données au moment de la validation du formulaire
@@ -99,6 +85,10 @@ class users {
         return $queryResult->execute(); //on éxécute la méthode
     }
 
+    /**
+     * Méthode permettant au user de modifier son mot de passe
+     * @return array
+     */
     public function updatePassword() {
         $query = 'UPDATE `ab0yz_users` SET `password`= :password WHERE `id` = :id';
         $queryResult = $this->db->prepare($query); //On prépare la requête avec des valeurs inconnues
@@ -107,12 +97,18 @@ class users {
         return $queryResult->execute(); //on éxécute la méthode
     }
 
+    /**
+     * Méthode permettant au user de supprimer son compte
+     * @return array
+     */
     public function deleteUser() {
         $query = 'DELETE FROM `ab0yz_users` WHERE `id` = :id';
         $queryResult = $this->db->prepare($query);
         $queryResult->bindValue(':id', $this->id, PDO::PARAM_INT);
         return $queryResult->execute();
     }
+
+
 
 }
 ?>
