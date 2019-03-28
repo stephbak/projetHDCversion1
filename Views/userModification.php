@@ -11,11 +11,10 @@ if($success == true){
 ?>
    <div class="connexion">
         <h2>Vos infos personnelles</h2>
-        <p>Votre nom : <?= $_SESSION['lastname'] ?></p>
-        <p>Votre Prénom : <?= $_SESSION['firstname'] ?></p>
-        <p>Votre N° de téléphone : <?= $_SESSION['phoneNumber'] ?></p>
-        <p>Votre identifiant de connexion : <?= $_SESSION['mail'] ?></p>
-       
+        <p>Votre nom : <?= $userConnection->lastname ?></p>
+        <p>Votre Prénom : <?= $userConnection->firstname ?></p>
+        <p>Votre N° de téléphone : <?= $userConnection->phone ?></p>
+        <p>Votre identifiant de connexion : <?= $userConnection->mail ?></p>
     </div>
 <?php } else { ?>
 <div class="connexion">

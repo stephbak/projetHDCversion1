@@ -9,6 +9,9 @@ $regexPhone = '/^0[1-9]([-. ]?[0-9]{2}){4}$/';
 $formError = array();
 $success = false;
 
+$users->id = $_SESSION['id'];
+$getChildInfoByIdUser = $users->getChildInfoByIdUser();
+
 
 if (isset($_POST['validate'])) { //si j'ai appuyé sur le bouton
     if (!empty($_POST['firstname'])) {//je vérifie que firstname n'est pas vide
@@ -62,12 +65,12 @@ if (isset($_POST['validate'])) { //si j'ai appuyé sur le bouton
         $users->id = $_SESSION['id'];
 
         if ($users->updateUser()) {
-            $userConnection = $users->userConnection();
+
             $_SESSION['lastname'] = $users->lastname;
             $_SESSION['firstname'] = $users->firstname;
             $_SESSION['phoneNumber'] = $users->phone;
             $_SESSION['mail'] = $users->mail;
-
+            $userConnection = $users->userConnection();
             $success = true;
         }
     }

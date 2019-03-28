@@ -108,7 +108,42 @@ class users {
         return $queryResult->execute();
     }
 
+    public function userInfo() {
+        $state = false;
+        $query = 'SELECT `id`, `lastname`, `firstname`, `phone`, `mail` FROM `ab0yz_users`';
+        $queryResult = $this->db->query($query);
+        return $queryResult->fetch(PDO::FETCH_OBJ);
+        return $result;
+    }
 
+    public function getUserInfoByIdUser() {
+
+        $query = 'SELECT `id`, `lastname`, `firstname`, `phone`, `mail` FROM `ab0yz_users` WHERE `id` = :id';
+        $queryResult = $this->db->prepare($query);
+        $queryResult->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $queryResult->execute();
+        return $queryResult->fetch(PDO::FETCH_OBJ);
+    }
+
+    public function updateUserInfo() {
+        $caracSuppr = array('-', ' ', '.');
+        $query = 'UPDATE `ab0yz_users` SET `lastname`= (UPPER(:lastname)), `firstname`= :firstname, `phone`= :phone, `mail`= :mail WHERE id= :id';
+        $queryResult = $this->db->prepare($query); //On prépare la requête avec des valeurs inconnues
+        $queryResult->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $queryResult->bindValue(':lastname', $this->lastname, PDO::PARAM_STR); //On insére des données au moment de la validation du formulaire
+        $queryResult->bindValue(':firstname', ucfirst(strtolower($this->firstname)), PDO::PARAM_STR); //transforme la chaine en minuscule et la premiére lettre en majuscule
+        $queryResult->bindValue(':phone', str_replace($caracSuppr, '', $this->phone), PDO::PARAM_STR); //remplace les . - par une chaine vide
+        $queryResult->bindValue(':mail', $this->mail, PDO::PARAM_STR);
+        return $queryResult->execute(); //on éxécute la méthode
+    }
+
+    public function getChildInfoByIdUser() {
+        $query = 'SELECT `ab0yz_childs`.`id`, `ab0yz_childs`.`lastname`, `ab0yz_childs`.`firstname`, DATE_FORMAT(`ab0yz_childs`.`birthDate`, \'%d-%m-%Y\') AS `birthDate`, CASE WHEN `ab0yz_childs`.`imageLaw` = 1 THEN \'Oui\' ELSE \'Non\' END AS `imageLaw`, CASE WHEN `ab0yz_childs`.`id_ab0yz_genre` = 1 THEN \'Garçon\' ELSE \'Fille\' END AS `id_ab0yz_genre` FROM `ab0yz_childs` INNER JOIN `ab0yz_users` ON `ab0yz_childs`.`id_ab0yz_users` = `ab0yz_users`.`id` WHERE `ab0yz_users`.`id` = :id';
+        $queryResult = $this->db->prepare($query);
+        $queryResult->bindValue(':id', $this->id, PDO::PARAM_INT);
+        $queryResult->execute();
+        return $queryResult->fetchAll(PDO::FETCH_OBJ);
+    }
 
 }
 ?>
