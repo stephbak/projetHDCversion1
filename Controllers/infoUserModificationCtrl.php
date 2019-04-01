@@ -1,15 +1,15 @@
 
 <?php
 
+//on instancie les class childs et users
 $childs = new ab0yz_childs();
 $users = new users();
-
-
+//si il existe un GET ID
 if (isset($_GET['id'])) {
     $users->id = $_GET['id'];
+    //on exécute la méthode permettant à l'admin de lire les infos d'un user en fonction de son ID
+    //de façon à ce que ces infos soient préremplis dans les input de la page infoUserModification
     $getUserInfoByIdUser = $users->getUserInfoByIdUser();
-
-   
 }
 $regexText = '/^[a-zéèàêâùïüëA-Z- \']+$/';
 $regexPhone = '/^0[1-9]([-. ]?[0-9]{2}){4}$/';
@@ -17,8 +17,6 @@ $regexBirthDate = '/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/';
 $regexMail = '/^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/';
 $formError = array();
 $success = false;
-
-
 if (isset($_POST['validate'])) {
     if (!empty($_POST['lastnameUser'])) {
         if (preg_match($regexText, $_POST['lastnameUser'])) {
@@ -58,15 +56,18 @@ if (isset($_POST['validate'])) {
     } else {
         $formError['mailUser'] = 'Veuillez entrer votre mail.';
     }
-
     //si il n'y a pas d'erreur
     if (count($formError) == 0) {
-       
+        //on récupère les POST
         $users->firstname = $firstnameUser;
         $users->lastname = $lastnameUser;
         $users->phone = $phoneUser;
         $users->mail = $mailUser;
+        //on éxécute la méthode permettant à l'admin de modifier les informations d'un user
         $updateUserInfo = $users->updateUserInfo();
+        //et on éxécute la méthode permettant à l'admin de lire les infos d'un user en fonction de son ID
+        //avant de passer la variable $success à true de manière à lire en BDD les nouvelles infos du user
+        //avant de les afficher mises à jour
         $getUserInfoByIdUser = $users->getUserInfoByIdUser();
         $success = true;
     }

@@ -5,19 +5,23 @@ include '../Models/users.php';
 include '../header.php';
 include '../Controllers/infoUserCtrl.php';
 ?>
-<?php 
-
-if($success == true){
-?>
-   <div class="connexion">
+<?php
+//si la variable succes de infoUserCtrl passe à true
+//on affiche les données mises à jour du User 
+if ($success == true) {
+    ?>
+    <div class="connexion">
         <h2>Vos infos personnelles</h2>
         <p>Votre nom : <?= $userConnection->lastname ?></p>
         <p>Votre Prénom : <?= $userConnection->firstname ?></p>
         <p>Votre N° de téléphone : <?= $userConnection->phone ?></p>
         <p>Votre identifiant de connexion : <?= $userConnection->mail ?></p>
     </div>
-<?php } else { ?>
-<div class="connexion">
+    <?php
+//sinon on laisse le formulaire affiché
+} else {
+    ?>
+    <div class="connexion">
         <h2>Vos infos personnelles</h2>
     </div>
     <div class="connexion">
@@ -64,7 +68,7 @@ if($success == true){
             </div>
         </form>
     </div>
-<div class="connexion">
+    <div class="connexion">
         <h2>Mot de passe</h2>
     </div>
     <div class="connexion">
@@ -72,7 +76,6 @@ if($success == true){
             <fieldset>
                 <legend>Modifier votr mot de passe</legend>
                 <div class="row col-lg-12 justify-content-center">
-                  
                     <div class="col-lg-4">
                         <div class="form-group">
                             <label for="password">Nouveau mot de passe : </label>
@@ -95,7 +98,8 @@ if($success == true){
             </div>
         </form>
     </div>
-<?php }
+    <?php
+}
 include '../footer.php';
 ?>
 

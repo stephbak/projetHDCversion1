@@ -11,7 +11,6 @@ $genreList = $genre->genreList();
 //je lis la table paiementTypes
 $paiementTypes = new ab0yz_paiementTypes();
 $paiementTypesList = $paiementTypes->paiementTypesList();
-
 if (isset($_POST['submit'])) {
     if (!empty($_POST['lastname'])) {
         if (preg_match($regexText, $_POST['lastname'])) {

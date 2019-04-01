@@ -1,4 +1,5 @@
 <?php
+
 class ab0yz_inscriptionsYear {
 
     public $id = 0;
@@ -13,6 +14,10 @@ class ab0yz_inscriptionsYear {
         $this->db = $database->db;
     }
 
+    /**
+     * Méthode permettant d'insérer dans la table inscriptionsYear les données renseignées par l'utilisateur lors de l'inscription d'un enfant
+     * @return booléen
+     */
     public function inscriptionYear() {
         $query = 'INSERT INTO `ab0yz_inscriptionsYear`(`years`, `medicalCertificate`, `numberPayment`, `id_ab0yz_paiementTypes`) VALUES (:years, :medicalCertificate, :numberPayment, :id_ab0yz_paiementTypes)';
         $queryResult = $this->db->prepare($query);

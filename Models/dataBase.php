@@ -1,17 +1,19 @@
 <?php
 
 class dataBase {
+
     public $db;
     private static $_instance;
 
     protected function __construct() {
-
         try {
+            //connexion à la base de données
             $this->db = new PDO('mysql:host=localhost;dbname=HappyDanceClub; charset=utf8', 'stephanebakum', 'hdclub');
         } catch (Exception $e) {
             die('Erreur : ' . $e->getMessage());
         }
     }
+
     /**
      * onrécupère l'instance de la classe
      * @return database
@@ -27,6 +29,7 @@ class dataBase {
     public function __destruct() {
         $db = NULL;
     }
+
 }
 ?>
 

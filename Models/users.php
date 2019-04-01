@@ -21,7 +21,7 @@ class users {
 
     /**
      * Méthode qui sert à insérer les données du user lors de son inscription
-     * @return array
+     * @return booléen
      */
     public function createUser() {// : lastname = marqueur nominatif
         $caracSuppr = array('-', ' ', '.');
@@ -40,7 +40,7 @@ class users {
 
     /**
      * Vérification dans la table user si le mail est déjà existant au moment de l'inscription
-     * @return array
+     * @return booléen
      */
     public function checkIfMailExist() {
         $result = false;
@@ -65,13 +65,12 @@ class users {
         if ($queryResult->execute()) {
             $result = $queryResult->fetch(PDO::FETCH_OBJ);
         }
-
         return $result;
     }
 
     /**
      * Méthode permettant au user de modifier ses données
-     * @return array
+     * @return booléen
      */
     public function updateUser() {
         $caracSuppr = array('-', ' ', '.');
@@ -87,7 +86,7 @@ class users {
 
     /**
      * Méthode permettant au user de modifier son mot de passe
-     * @return array
+     * @return booléen
      */
     public function updatePassword() {
         $query = 'UPDATE `ab0yz_users` SET `password`= :password WHERE `id` = :id';
@@ -99,7 +98,7 @@ class users {
 
     /**
      * Méthode permettant au user de supprimer son compte
-     * @return array
+     * @return booléen
      */
     public function deleteUser() {
         $query = 'DELETE FROM `ab0yz_users` WHERE `id` = :id';
@@ -108,6 +107,10 @@ class users {
         return $queryResult->execute();
     }
 
+    /**
+     * Méthode permettant au user lire ses informations
+     * @return array
+     */
     public function userInfo() {
         $state = false;
         $query = 'SELECT `id`, `lastname`, `firstname`, `phone`, `mail` FROM `ab0yz_users`';
@@ -116,8 +119,11 @@ class users {
         return $result;
     }
 
+    /**
+     * Méthode permettant à l'admin de lire les infos d'un user en fonction de son ID
+     * @return array
+     */
     public function getUserInfoByIdUser() {
-
         $query = 'SELECT `id`, `lastname`, `firstname`, `phone`, `mail` FROM `ab0yz_users` WHERE `id` = :id';
         $queryResult = $this->db->prepare($query);
         $queryResult->bindValue(':id', $this->id, PDO::PARAM_INT);
@@ -125,6 +131,10 @@ class users {
         return $queryResult->fetch(PDO::FETCH_OBJ);
     }
 
+    /**
+     * Méthode permettant à l'admin de modifier les informations d'un user
+     * @return booléen
+     */
     public function updateUserInfo() {
         $caracSuppr = array('-', ' ', '.');
         $query = 'UPDATE `ab0yz_users` SET `lastname`= (UPPER(:lastname)), `firstname`= :firstname, `phone`= :phone, `mail`= :mail WHERE id= :id';
@@ -137,12 +147,27 @@ class users {
         return $queryResult->execute(); //on éxécute la méthode
     }
 
+    /**
+     * Méthode permettant à l'admin de lire les informations d'un enfant en fonction de l'ID de son parent
+     * @return array
+     */
     public function getChildInfoByIdUser() {
         $query = 'SELECT `ab0yz_childs`.`id`, `ab0yz_childs`.`lastname`, `ab0yz_childs`.`firstname`, DATE_FORMAT(`ab0yz_childs`.`birthDate`, \'%d-%m-%Y\') AS `birthDate`, CASE WHEN `ab0yz_childs`.`imageLaw` = 1 THEN \'Oui\' ELSE \'Non\' END AS `imageLaw`, CASE WHEN `ab0yz_childs`.`id_ab0yz_genre` = 1 THEN \'Garçon\' ELSE \'Fille\' END AS `id_ab0yz_genre` FROM `ab0yz_childs` INNER JOIN `ab0yz_users` ON `ab0yz_childs`.`id_ab0yz_users` = `ab0yz_users`.`id` WHERE `ab0yz_users`.`id` = :id';
         $queryResult = $this->db->prepare($query);
         $queryResult->bindValue(':id', $this->id, PDO::PARAM_INT);
         $queryResult->execute();
         return $queryResult->fetchAll(PDO::FETCH_OBJ);
+    }
+
+    /**
+     * Méthode permettant à l'admin de supprimer un user
+     * @return booléen
+     */
+    public function deleteUserByAdmin() {
+        $query = 'DELETE FROM `ab0yz_users` WHERE `id` = :id';
+        $queryResult = $this->db->prepare($query);
+        $queryResult->bindValue(':id', $this->id, PDO::PARAM_INT);
+        return $queryResult->execute();
     }
 
 }

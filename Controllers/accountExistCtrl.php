@@ -22,9 +22,10 @@ if (isset($_POST['login'])) {
     if (count($formError) == 0) {
         $users = new users();
         $users->mail = $login;
+        //On exécute la méthode permettantg à un utilisateur de se connecter à son compte
         $users = $users->userConnection();
         if (is_object($users)) {
-            
+            //on vérifie que le password renseigné pour se connecter est le même que celui saisi lors de l'inscription
             if (password_verify($password, $users->password)) {
                 $_SESSION['id'] = $users->id;
                 $_SESSION['lastname'] = $users->lastname;
@@ -36,7 +37,6 @@ if (isset($_POST['login'])) {
                 $_SESSION['password'] = $users->password;
                 $_SESSION['id_ab0yz_status'] = $users->id_ab0yz_status;
                 $_SESSION['isConnect'] = true;
-               
             } else {
                 $formError['login'] = 'Votre login ou votre mot de passe n\'est pas valide.';
             }

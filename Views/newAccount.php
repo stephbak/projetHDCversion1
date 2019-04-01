@@ -71,7 +71,7 @@ include '../Controllers/newAccountCtrl.php';
                 </div>
                 <input name="rules" type="checkbox" value="1" /><label>J'ai bien pris connaissance du <a href='reglement.php'>réglement intérieur</a> et m'engage à l'appliquer et le faire appliquer par mon enfant.</label>
                 <p class="error"><?= empty($formError['rules']) ? '' : $formError['rules']; ?></p>
-                <input name="CGU" type="checkbox" value="1" /><label>J'ai bien pris connaissance des <a href='reglement.php'>CGU</a></label>
+                <input name="CGU" type="checkbox" value="1" /><label>J'ai bien pris connaissance des <a href='CGU.php'>CGU</a></label>
                 <p class="error"><?= empty($formError['CGU']) ? '' : $formError['CGU']; ?></p>
             </fieldset>  
             <div  class="submit row col-lg-12 justify-content-center">

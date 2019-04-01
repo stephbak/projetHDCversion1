@@ -59,10 +59,14 @@ if ($success == true) {
                 </div>
             </div>
             <input class="button btn" type="submit" value="Valider" name="submit" />
-            <a class="button btn" href="childList.php">Annuler</a>
+            <?php if (isset($_SESSION['isConnect']) && ($_SESSION['id_ab0yz_status'] == 1)) { ?>
+                <a class="button btn" href="childList.php">Annuler</a>
+            <?php } else { ?>
+                <a class="button btn" href="infoUser.php">Annuler</a>
+            <?php } ?>
         </div>
     </form>
-<?php
+    <?php
 }
 include '../footer.php';
 ?>

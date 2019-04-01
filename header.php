@@ -13,103 +13,103 @@
     </head>
     <body>
         <h1>HAPPY DANCE CLUB</h1>
-                <!--navbar admin-->
-                <?php if(isset($_SESSION['isConnect']) && ($_SESSION['id_ab0yz_status'] == 1)){ ?>
-        <nav class="admin navbar navbar-expand-lg navbar-light ">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarColor03">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <select>
-                            <option onclick="window.location.href = '../index.php#presentation'">Qui sommes-nous?</option>
-                            <option onclick="window.location.href = '../index.php#contact'">Nous contacter</option>
-                            <option onclick="window.location.href = '../index.php#location'">Nous trouver</option>
-                        </select>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Views/calendrier.php">Agenda<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Views/news.php">Actualités</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Views/galerie.php">Galerie</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Views/formulaire.php">Inscrire mon enfant</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Views/reglement.php">Règlement intérieur</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Views/childList.php">Liste des enfants</a>
-                    </li>
-                    <?php if (isset($_SESSION['isConnect'])) { ?>
+        <!--navbar admin-->
+        <?php if (isset($_SESSION['isConnect']) && ($_SESSION['id_ab0yz_status'] == 1)) { ?>
+            <nav class="admin navbar navbar-expand-lg navbar-light ">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarColor03">
+                    <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="/Views/infoUser.php">Mes infos</a>
+                            <select>
+                                <option onclick="window.location.href = '../index.php#presentation'">Qui sommes-nous?</option>
+                                <option onclick="window.location.href = '../index.php#contact'">Nous contacter</option>
+                                <option onclick="window.location.href = '../index.php#location'">Nous trouver</option>
+                            </select>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/Views/logOut.php?action=disconnect">Deconnexion</a>
+                            <a class="nav-link" href="/Views/calendrier.php">Agenda<span class="sr-only">(current)</span></a>
                         </li>
-                    <?php } else { ?>
                         <li class="nav-item">
-                            <a class="nav-link" href="/Views/connexion.php">Connexion/Inscription</a>
+                            <a class="nav-link" href="/Views/news.php">Actualités</a>
                         </li>
-                    <?php } ?>
-                </ul>
-            </div>
-        </nav>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Views/galerie.php">Galerie</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Views/formulaire.php">Inscrire mon enfant</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Views/reglement.php">Règlement intérieur</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Views/childList.php">Liste des enfants</a>
+                        </li>
+                        <?php if (isset($_SESSION['isConnect'])) { ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Views/infoUser.php">Mes infos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Views/logOut.php?action=disconnect">Deconnexion</a>
+                            </li>
+                        <?php } else { ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Views/connexion.php">Connexion/Inscription</a>
+                            </li>
+                        <?php } ?>
+                    </ul>
+                </div>
+            </nav>
         <?php } else { ?>
-        
-        
-        
-        <!--Navbar user-->
-        
-        <nav class="navbar navbar-expand-lg navbar-light ">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarColor03">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item">
-                        <select>
-                            <option onclick="window.location.href = '../index.php#presentation'">Qui sommes-nous?</option>
-                            <option onclick="window.location.href = '../index.php#contact'">Nous contacter</option>
-                            <option onclick="window.location.href = '../index.php#location'">Nous trouver</option>
-                        </select>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Views/calendrier.php">Agenda<span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Views/news.php">Actualités</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Views/galerie.php">Galerie</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Views/formulaire.php">Inscrire mon enfant</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/Views/reglement.php">Règlement intérieur</a>
-                    </li>
-                    <?php if (isset($_SESSION['isConnect'])) { ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Views/infoUser.php">Mes infos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Views/logOut.php?action=disconnect">Deconnexion</a>
-                        </li>
-                    <?php } else { ?>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Views/connexion.php">Connexion/Inscription</a>
-                        </li>
-                    <?php } ?>
-                </ul>
-            </div>
-        </nav>
-        
 
-<?php } ?>
+
+
+            <!--Navbar user-->
+
+            <nav class="navbar navbar-expand-lg navbar-light ">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarColor03">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item">
+                            <select>
+                                <option onclick="window.location.href = '../index.php#presentation'">Qui sommes-nous?</option>
+                                <option onclick="window.location.href = '../index.php#contact'">Nous contacter</option>
+                                <option onclick="window.location.href = '../index.php#location'">Nous trouver</option>
+                            </select>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Views/calendrier.php">Agenda<span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Views/news.php">Actualités</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Views/galerie.php">Galerie</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Views/formulaire.php">Inscrire mon enfant</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/Views/reglement.php">Règlement intérieur</a>
+                        </li>
+                        <?php if (isset($_SESSION['isConnect'])) { ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Views/infoUser.php">Mes infos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Views/logOut.php?action=disconnect">Deconnexion</a>
+                            </li>
+                        <?php } else { ?>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/Views/connexion.php">Connexion/Inscription</a>
+                            </li>
+                        <?php } ?>
+                    </ul>
+                </div>
+            </nav>
+
+
+        <?php } ?>

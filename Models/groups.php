@@ -1,4 +1,5 @@
 <?php
+
 class ab0yz_groups {
 
     public $id = 0;
@@ -9,6 +10,7 @@ class ab0yz_groups {
         $database = dataBase::getInstance();
         $this->db = $database->db;
     }
+
     /**
      * Méthode permettant de récupérer la liste des types de paiement
      */
@@ -17,4 +19,5 @@ class ab0yz_groups {
         $queryResult = $this->db->query($query);
         return $queryResult->fetchAll(PDO::FETCH_OBJ);
     }
+
 }

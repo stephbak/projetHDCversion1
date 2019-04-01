@@ -22,20 +22,19 @@ include 'header.php';
         </div>
     </div>
     <div id="img" class="row col-lg-6 justify-content-center">
-        <a href="assets/img/spectacle 10 juin 2018/spectacle_10_juin_2018_3.png" target="_blank"><img class="img-fluid" src="assets/img/spectacle 10 juin 2018/spectacle_10_juin_2018_3.png" /></a>
+        <a href="assets/img/spectacle 10 juin 2018/spectacle_10_juin_2018_3.png" target="_blank"><img class="img-fluid" src="assets/img/spectacle 10 juin 2018/spectacle_10_juin_2018_3.png" alt="show" /></a>
         <div class="row offset-1-col-lg-3 justify-content-center">
-            <a href="assets/img/salon du tatouage/salon_du_tatouage_2018_1.png" target="_blank"><img id="img1" class="img-fluid" src="assets/img/salon du tatouage/salon_du_tatouage_2018_1.png" /></a>
+            <a href="assets/img/salon du tatouage/salon_du_tatouage_2018_1.png" target="_blank"><img id="img1" class="img-fluid" src="assets/img/salon du tatouage/salon_du_tatouage_2018_1.png" alt="show" /></a>
         </div>
         <div class="row offset-1-col-lg-3 justify-content-center">
-            <a href="assets/img/spectacle 21 mai 2018/21_mai_2018_4.png" target="_blank"><img id="img1" class="img-fluid" src="assets/img/spectacle 21 mai 2018/21_mai_2018_4.png" /></a>
+            <a href="assets/img/spectacle 21 mai 2018/21_mai_2018_4.png" target="_blank"><img id="img1" class="img-fluid" src="assets/img/spectacle 21 mai 2018/21_mai_2018_4.png" alt="show" /></a>
         </div>
         <div class="row offset-1-col-lg-3 justify-content-center">
             <a href="assets/img/Arbre de Noël 2017/arbre_de_noel_2017_3.png"  target="_blank">
-                <img id="img1" class="img-fluid" src="assets/img/Arbre de Noël 2017/arbre_de_noel_2017_3.png" />
+                <img id="img1" class="img-fluid" src="assets/img/Arbre de Noël 2017/arbre_de_noel_2017_3.png" alt="christmas" />
             </a>
         </div>
     </div>
-
 </div>
 <div class="row col-lg-12">
     <div class="card-body" id="contact">

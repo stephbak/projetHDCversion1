@@ -40,7 +40,7 @@ include '../header.php';
             </div>
         </form>
     </div>
-<?php
+    <?php
 }
 include '../footer.php';
 ?>

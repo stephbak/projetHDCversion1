@@ -15,7 +15,6 @@ include '../header.php';
         <li>Il est conseillé de ne pas ramener d'objets de valeurs ( bijoux, téléphone... ) car l'association ne pourra être tenue responsable en cas de perte ou de vol.</li>
     </ul>
 </div>
-
 <?php
 include '../footer.php';
 ?>

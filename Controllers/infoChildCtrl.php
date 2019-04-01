@@ -5,13 +5,18 @@ $emergencyContact = new ab0yz_emergencyContact();
 
 if (isset($_GET['id'])) {
     $childs->id = $_GET['id'];
+    //on lit les infos d'un enfant en fonction de son ID
     $getChildInfoById = $childs->getChildInfoById();
+    //on lit les infos d'un parents en fonction de l'ID de l'enfant
     $userInfoByIdChild = $childs->userInfoByIdChild();
     $emergencyContact->id_ab0yz_childs = $childs->id;
+    //on lit les infos du contact d'urgence en fonction de l'ID de l'enfant
     $emergencyContactInfoByIdChild = $emergencyContact->emergencyContactInfoByIdChild();
+//    on lit les infos de l'inscription de l'année en fonction de l'ID de l'enfant
     $inscriptionYearInfoByIdChild = $childs->inscriptionYearInfoByIdChild();
     $formatedDate = date('Y-m-d', strtotime($getChildInfoById->birthDate));
     $genre = new ab0yz_genre();
+    //On lit la base de donnée genreList
     $genreList = $genre->genreList();
 }
 $regexText = '/^[a-zéèàêâùïüëA-Z- \']+$/';
@@ -20,8 +25,6 @@ $regexBirthDate = '/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/';
 $regexMail = '/^[^\W][a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\@[a-zA-Z0-9_]+(\.[a-zA-Z0-9_]+)*\.[a-zA-Z]{2,4}$/';
 $formError = array();
 $success = false;
-
-
 if (isset($_POST['submit'])) {
     if (!empty($_POST['lastname'])) {
         if (preg_match($regexText, $_POST['lastname'])) {
@@ -71,11 +74,13 @@ if (isset($_POST['submit'])) {
         $childs->imageLaw = $imageLaw;
         $childs->id_ab0yz_users = $_SESSION['id'];
         $childs->id_ab0yz_genre = $genre;
+        //on éxecute la méthode permettant de modifier les infos d'un enfant
         $updateChild = $childs->updateChild();
+        //on exécute la méthode permettant de lire les infos mises à jour d'un enfant
+        //pour l'afficher sur la page infoChildModification
         $getChildInfoById = $childs->getChildInfoById();
         $success = true;
     }
 }
-
 ?>
 

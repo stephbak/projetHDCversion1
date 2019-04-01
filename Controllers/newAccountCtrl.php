@@ -1,4 +1,5 @@
 <?php
+
 //on instancie la class users
 $users = new users();
 $regexText = '/^[a-zéèàêâùïüëA-Z- \']+$/';
@@ -28,6 +29,8 @@ if (isset($_POST['submit'])) { //si j'ai appuyé sur le bouton
         $formError['lastname'] = 'Veuillez entrer votre nom.';
     }
     if (!empty($_POST['mail'])) {
+        //FILTER_VALIDATE_EMAIL remplace la regex
+        //c'est une fonction de php prédéfinie
         if (filter_var($_POST['mail'], FILTER_VALIDATE_EMAIL)) {
             $mail = htmlspecialchars($_POST['mail']);
         } else {
@@ -77,6 +80,7 @@ if (isset($_POST['submit'])) { //si j'ai appuyé sur le bouton
     }
     //je compte le nb de ligne existante dans le tableau d'erreur, si = 0 : il n'y a pas d'erreur
     if (count($formError) == 0) {
+        //je récupère les POST sous forme d'objet
         $users->lastname = $lastname;
         $users->firstname = $firstname;
         $users->phone = $phoneNumber;
@@ -86,9 +90,12 @@ if (isset($_POST['submit'])) { //si j'ai appuyé sur le bouton
         $users->password = password_hash($password, PASSWORD_BCRYPT); //on hash le mot de passe    
         //on vérifie que le mail n'existe pas encore
         $checkIfMailExist = $users->checkIfMailExist();
+        //si il existe déjà
         if (intval($checkIfMailExist->existMail) === 1) {
+            //on l'indique à l'utilisateur
             $success = false;
             $formError['existMail'] = 'Ce mail est déjà utilisé';
+            //si il n'existe pas encore
         } elseif (intval($checkIfMailExist->existMail) === 0) {
             $database = dataBase::getInstance();
             $database->db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
